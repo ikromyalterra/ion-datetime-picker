@@ -1,5 +1,5 @@
+import { NgModule, CUSTOM_ELEMENTS_SCHEMA, ModuleWithProviders } from '@angular/core';
 import { CommonModule } from "@angular/common";
-import { NgModule } from "@angular/core";
 import { IonicModule } from "ionic-angular";
 
 import { DatetimePickerAlertComponent } from "./alert.component";
@@ -8,14 +8,14 @@ import { DatetimePickerComponent } from "./picker.component";
 import { DatetimePickerDirective } from "./picker.directive";
 
 @NgModule({
+  imports: [
+    CommonModule,
+    IonicModule
+  ],
   declarations: [
     DatetimePickerAlertComponent,
     DatetimePickerComponent,
-    DatetimePickerDirective,
-  ],
-  imports: [
-    CommonModule,
-    IonicModule,
+    DatetimePickerDirective
   ],
   entryComponents: [
     DatetimePickerAlertComponent,
@@ -26,5 +26,12 @@ import { DatetimePickerDirective } from "./picker.directive";
   exports: [
     DatetimePickerDirective,
   ],
+  schemas: [CUSTOM_ELEMENTS_SCHEMA],
 })
-export class DatetimePickerModule {}
+export class DatetimePickerModule {
+  static forRoot(): ModuleWithProviders {
+    return {
+        ngModule: DatetimePickerModule,
+    };
+  }
+}
